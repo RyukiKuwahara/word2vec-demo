@@ -97,10 +97,16 @@ const App = () => {
       .filter(([word]) => !inputWordSet.has(word)) // 除外処理を追加
       .map(([word, vector]) => ({
         word,
-        similarity: distanceMetric === 'cosine' ? cosineSimilarity(resultVector, vector) : -euclideanDistance(resultVector, vector),
+        similarity: distanceMetric === 'cosine' ? cosineSimilarity(resultVector, vector) : euclideanDistance(resultVector, vector),
       }));
   
-    similarities.sort((a, b) => b.similarity - a.similarity);
+    similarities.sort((a, b) => {
+      if (distanceMetric === 'cosine') {
+        return b.similarity - a.similarity; // コサイン類似度はそのまま降順で
+      } else {
+        return a.similarity - b.similarity; // ユークリッド距離は反転させて距離が小さい順に
+      }
+    });
     setSimilarWords(similarities.slice(0, similarWordsCount));
   };
   
