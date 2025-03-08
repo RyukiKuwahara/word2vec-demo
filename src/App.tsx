@@ -6,9 +6,9 @@ import './App.css';
 const App = () => {
   const [inputWord, setInputWord] = useState('');
   const [inputWords, setInputWords] = useState<{ word: string; operation: 'add' | 'subtract' }[]>([
-    { word: '博多', operation: 'add' },
-    { word: '福岡', operation: 'subtract' },
-    { word: '愛知', operation: 'add' },
+    { word: '王様', operation: 'add' },
+    { word: '男', operation: 'subtract' },
+    { word: '女', operation: 'add' },
   ]);
   const [similarWords, setSimilarWords] = useState<{ word: string; similarity: number }[]>([]);
   const [wordVectors, setWordVectors] = useState<{ [key: string]: number[] }>({});
