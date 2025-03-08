@@ -131,7 +131,7 @@ const App = () => {
                 <MenuItem value="add">+</MenuItem>
                 <MenuItem value="subtract">-</MenuItem>
               </Select>
-              <ListItemText primary={item.word} />
+              <ListItemText primary={item.word} sx={{ ml: 2 }}/>
               <IconButton edge="end" aria-label="delete" onClick={() => removeWord(index)}>
                 <DeleteIcon />
               </IconButton>
