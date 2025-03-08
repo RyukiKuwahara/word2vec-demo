@@ -5,7 +5,11 @@ import './App.css';
 
 const App = () => {
   const [inputWord, setInputWord] = useState('');
-  const [inputWords, setInputWords] = useState<{ word: string; operation: 'add' | 'subtract' }[]>([]);
+  const [inputWords, setInputWords] = useState<{ word: string; operation: 'add' | 'subtract' }[]>([
+    { word: '博多', operation: 'add' },
+    { word: '福岡', operation: 'subtract' },
+    { word: '愛知', operation: 'add' },
+  ]);
   const [similarWords, setSimilarWords] = useState<{ word: string; similarity: number }[]>([]);
   const [wordVectors, setWordVectors] = useState<{ [key: string]: number[] }>({});
   const [loading, setLoading] = useState(false);
@@ -85,13 +89,21 @@ const App = () => {
       alert('単語を入力してください');
       return;
     }
-    const similarities = Object.entries(wordVectors).map(([word, vector]) => ({
-      word,
-      similarity: distanceMetric === 'cosine' ? cosineSimilarity(resultVector, vector) : -euclideanDistance(resultVector, vector),
-    }));
+  
+    // inputWords に含まれる単語をセットにして除外
+    const inputWordSet = new Set(inputWords.map(item => item.word));
+  
+    const similarities = Object.entries(wordVectors)
+      .filter(([word]) => !inputWordSet.has(word)) // 除外処理を追加
+      .map(([word, vector]) => ({
+        word,
+        similarity: distanceMetric === 'cosine' ? cosineSimilarity(resultVector, vector) : -euclideanDistance(resultVector, vector),
+      }));
+  
     similarities.sort((a, b) => b.similarity - a.similarity);
-    setSimilarWords(similarities.slice(0, similarWordsCount)); // 選択された数だけ表示
+    setSimilarWords(similarities.slice(0, similarWordsCount));
   };
+  
 
   return (
     <>
