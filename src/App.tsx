@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { AppBar, Toolbar, Typography, TextField, Button, Container, List, ListItem, ListItemText, CircularProgress, Box, IconButton, Select, MenuItem } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './App.css';  // CSSをインポート
