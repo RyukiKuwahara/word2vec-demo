@@ -7,7 +7,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: auto;
 }
 
 h1, h2 {
@@ -101,9 +101,6 @@ li {
   align-items: center;
 }
 
-li:hover {
-  background-color: #e2e2e2;
-}
 
 /* Delete Button */
 .delete-button {
