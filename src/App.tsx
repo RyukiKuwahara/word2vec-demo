@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import { AppBar, Toolbar, Typography, TextField, Button, Container, List, ListItem, ListItemText, CircularProgress, Box, IconButton, Slider, MenuItem, Select, Autocomplete } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './App.css';
@@ -113,6 +114,11 @@ const App = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Word2Vec Demo</title>
+        <meta name="description" content="Word2Vecを使って単語の加減算や類似語検索を行うデモアプリです。" />
+        <meta name="keywords" content="Word2Vec, 自然言語処理, 類似語検索, 単語ベクトル" />
+      </Helmet>
       <AppBar position="sticky" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
         <Toolbar>
           <Typography variant="h6" style={{ flexGrow: 1, textAlign: 'center' }}>
