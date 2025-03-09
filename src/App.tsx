@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { AppBar, Toolbar, Typography, TextField, Button, Container, List, ListItem, ListItemText, CircularProgress, Box, IconButton, Slider, MenuItem, Select } from '@mui/material';
+import { AppBar, Toolbar, Typography, TextField, Button, Container, List, ListItem, ListItemText, CircularProgress, Box, IconButton, Slider, MenuItem, Select, Autocomplete } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './App.css';
 
@@ -113,7 +113,7 @@ const App = () => {
 
   return (
     <>
-      <AppBar position="sticky">
+      <AppBar position="sticky" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
         <Toolbar>
           <Typography variant="h6" style={{ flexGrow: 1, textAlign: 'center' }}>
             Word2Vec Demo
@@ -125,7 +125,16 @@ const App = () => {
           単語の加減算と類似語検索
         </Typography>
         <Box display="flex">
-          <TextField label="単語を入力" variant="outlined" value={inputWord} onChange={(e) => setInputWord(e.target.value)} fullWidth />
+        <Autocomplete
+          freeSolo
+          options={inputWord ? Object.keys(wordVectors) : []}  // 単語リストをサジェスト
+          value={inputWord}
+          onInputChange={(_, newValue) => setInputWord(newValue)}
+          fullWidth
+          renderInput={(params) => (
+            <TextField {...params} label="単語を入力" variant="outlined" fullWidth />
+          )}
+        />
           <Button variant="contained" color="primary" onClick={addWord} disabled={loading}>
             追加
           </Button>
@@ -154,7 +163,7 @@ const App = () => {
             valueLabelDisplay="auto"
             valueLabelFormat={(value) => value}
             min={1}
-            max={10000}
+            max={100}
             step={1}
             sx={{ width: '80%' }}
           />
