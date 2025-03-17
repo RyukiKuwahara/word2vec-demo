@@ -118,6 +118,7 @@ const App = () => {
         <title>Word2Vec Demo</title>
         <meta name="description" content="Word2Vecを使って単語の加減算や類似語検索を行うデモアプリです。" />
         <meta name="keywords" content="Word2Vec, 自然言語処理, 類似語検索, 単語ベクトル" />
+        <meta name="google-site-verification" content="dr2NWlhNiScAmTVaYd30S9pSZmSpCcBK99QbobSoBTM" />
       </Helmet>
       <AppBar position="sticky" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
         <Toolbar>
